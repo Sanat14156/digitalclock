@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalClock</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(70, 66, 75);
+        }
+        #digital-clock{
+            background-color: rgb(32, 11, 2);
+            
+            height: 130px;
+            display: flex;
+            color: aliceblue;
+            /* background-clip:content-box; */
+            
+            
+            justify-content:center;
+            align-items: center;
+            gap: 10px;
+            padding:  20px 40px;
+            /* box-shadow: 0px 0px 30px 10px white ; */
+            transition: all;
+            transition-timing-function: linear;
+            animation-name: box;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes box {
+            0%{
+                box-shadow: 0px 0px 80px 1px rgb(5, 247, 98) ;
+            }
+            25%{
+                box-shadow: 0px 0px 80px 1px rgb(253, 14, 14) ;
+            }
+            50%{
+                box-shadow: 0px 0px 80px 1px rgb(91, 241, 27) ;
+            }
+            75%{
+                box-shadow: 0px 0px 80px 1px rgb(76, 15, 246) ;
+            }
+            100%{
+                box-shadow: 0px 0px 80px 1px rgb(245, 7, 233) ;
+            }
+        }
+
+        
+         span{
+            font-size: 100px;
+            align-self: center;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image:linear-gradient(rgb(218, 245, 218),rgb(52, 150, 206),rgb(255, 0, 30),white);
+            font-weight: bolder;
+        }
+        span:nth-of-type(2){
+            padding-bottom: 20px;
+        }
+        #digital-clock>div{
+            display: flex;
+            gap: 10px;
+            /* background-color: rgb(240, 200, 152); */
+            align-self: end;
+           
+        }
+        #digital-clock>div>span{
+            
+            gap: 10px;
+            font-size: 30px;
+            padding-bottom: 0px; 
+        }
+        #digital-clock>div>span:nth-of-type(2){
+
+            color: rgb(0, 221, 255);
+        }
+        
+       
+        
+    </style>
+</head>
+<body>
+    <div id="digital-clock">
+        <span id="hour"></span>
+        <span>:</span>
+        <span id="minute"></span>
+        <div><span id="second"></span><span id="ampm"></span></div>
+    </div>
+    <script>
+        function digiclock() {
+         let h= document.getElementById("hour");
+        let m=document.getElementById("minute");
+        let s=document.getElementById("second");
+        let p=document.getElementById("ampm");
+     
+        let hours=new Date().getHours();
+        let min=new Date().getMinutes();
+        let sec=new Date().getSeconds();
+     
+        let ampm=hours>=12?"PM":"AM";
+        if(hours>12){
+         hours=hours-12;
+        }
+     
+        hours=(hours<10)? "0"+hours:hours;
+        min=(min<10)? "0"+min:min;
+        sec=(sec<10)? "0"+sec:sec;
+     
+        h.innerHTML=hours;
+        m.innerHTML=min;
+        s.innerHTML=sec;
+        p.innerHTML=ampm;
+     
+        };
+        setInterval(digiclock,1000);
+     
+     </script>
+</body>
+
+</html>
